@@ -14,7 +14,8 @@ library(maps)
 library(grid) 
 library(png)
 
-# Maps created using CanVec data (Canada Centre for Mapping and Earth Observation (NRCan, ESS)) which can be found at http://maps.canada.ca/czs/index-en.html
+# Maps created using CanVec data (Canada Centre for Mapping and Earth Observation 
+# (NRCan, ESS)) which can be found at http://maps.canada.ca/czs/index-en.html
 
 lakes <- st_read("~/Dropbox/Map poster/FME_5544441C_1527277928696_1684/ESRISHAPE_1/canvec_180525_12507/waterbody_2.shp", quiet = TRUE) %>%
   st_transform("+proj=longlat +datum=WGS84 +no_defs") %>% 
@@ -47,13 +48,10 @@ g <- ggplot(water_linear) +
   theme_bw(base_size = 25)+
   theme(axis.title = element_blank(), 
         plot.title = element_text(size = 40, face = "bold", hjust = 0.5)) +
-  ggtitle("Hydrological features of Brandon MB and surounding area") +
+  ggtitle("Hydrological features of Brandon MB and surrounding area") +
   theme(plot.margin = unit(c(10, 10, 40, 10), "mm")) +
   annotation_custom(qrcode, xmin = -100.6, xmax = -100.7, ymin = 49.175, ymax = 49.25) +
-  annotation_custom(textGrob(label = "Hydrological features map created with CanVec data
-                             \nusing R. Data links and R scripts available on GitHub 
-                             \nscan QR code).",just = "left", gp = gpar(fontsize = 18)),
-                    xmin = -100.55, xmax = -100.65, ymin = 49.175, ymax = 49.25)
+  annotation_custom(textGrob(label = "Hydrological features map created with CanVec data \nusing R. Data links and R scripts available on GitHub \nscan QR code).",just = "left", gp = gpar(fontsize = 18)), xmin = -100.55, xmax = -100.65, ymin = 49.175, ymax = 49.25)
 
 gt <- ggplot_gtable(ggplot_build(g))
 gt$layout$clip[gt$layout$name == "panel"] <- "off"
